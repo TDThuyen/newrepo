@@ -13,16 +13,26 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Get all of the tasks for the User.
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
+    protected $guarded = [
+        'is_admin',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
