@@ -3,13 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
+use App\Http\Middleware\CheckAdmin;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/users', UserController::class);
-
+Route::middleware(CheckAdmin::class)->group(function () {
+    Route::resource('/users', UserController::class);
+});
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
 Route::get('/tasks/edit', [TaskController::class, 'edit'])->name('tasks.edit');
