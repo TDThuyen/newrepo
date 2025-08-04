@@ -1,0 +1,21 @@
+{
+  "name": "newrepo",
+  "description": "",
+  "main": "",
+  "authors": [
+    "TDThuyen <22026505@vnu.edu.vn>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/TDThuyen/newrepo",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "template-bower-example": "TDThuyen/template-bower-example#main"
+  }
+}
