@@ -3,9 +3,19 @@
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::delete('/users/delete', [UserController::class, 'delete'])->name('users.delete');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
 });
 
 Route::get('/dashboard', function () {

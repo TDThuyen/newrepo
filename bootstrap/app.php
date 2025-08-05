@@ -11,7 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Thêm middleware của bạn vào group 'web'
+        // Đăng ký middleware alias
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\CheckAdmin::class,
+        ]);
+
+        // Middleware cho web group (nếu có)
         $middleware->web(append: [
             \App\Http\Middleware\Localization::class,
         ]);
