@@ -4,6 +4,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/users/delete', [UserController::class, 'delete'])->name('users.delete');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+    Route::resource('tasks', TaskController::class);
 });
 
 Route::get('/dashboard', function () {
